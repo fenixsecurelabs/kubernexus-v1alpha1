@@ -1,0 +1,28 @@
+import { Component } from 'preact';
+import Head from "next/head";
+import { getPath } from "../../../packages/lib/path"
+// import { connect } from 'react-redux';
+
+class Error extends Component {
+    componentDidMount(): void {
+        console.log(`path: ${getPath()}`)
+        // this.props.updatepagepath({ path : getPath() })
+    }
+
+    render() {
+        return (
+            // <NoSsr>
+                <Head>
+                    <title>404 - Page Not Found</title>
+                </Head>
+            // <CustomErrorMessage />
+            // </NoSsr>
+        );
+    }
+}
+
+// const mapDispatchToProps = dispatch => ({ updatepagepath : bindActionCreators(updatepagepath, dispatch) })
+
+// export default connect(null)(Error);
+
+export default Error;

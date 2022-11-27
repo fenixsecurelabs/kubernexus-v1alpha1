@@ -1,10 +1,7 @@
-import { Button } from "ui";
-
-export default function Web() {
+export default function ProviderUi() {
   return (
     <div>
-      <h1>Web</h1>
-      <Button />
+      <h1>Nexus Provider-UI</h1>
     </div>
   );
 }

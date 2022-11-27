@@ -1,10 +1,7 @@
-import { Button } from "ui";
-
-export default function Docs() {
+export default function Ui() {
   return (
     <div>
-      <h1>Docs</h1>
-      <Button />
+      <h1>Nexus UI</h1>
     </div>
   );
 }
