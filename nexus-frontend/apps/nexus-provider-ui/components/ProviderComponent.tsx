@@ -132,8 +132,8 @@ class ProviderComponent extends Component<Props, State> {
                         <DialogTitle>
                             <b>Choosing a provider</b>
                         </DialogTitle>
-                        <DialogContent dividers>
-                            <Typography gutterBottom>
+                        <DialogContent dividers={true}>
+                            <Typography gutterBottom={true}>
                                 <p>
                                     Login...
                                 </p>

@@ -27,6 +27,7 @@
     "@types/react": "18.0.25",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
+    "rome": "^10.0.1",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.3"
   }
