@@ -38,6 +38,6 @@ export default function subscribeDataPlaneEvents(dataCB, variables) {
             filter: variables,
         },
         onNext: dataCB,
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 }

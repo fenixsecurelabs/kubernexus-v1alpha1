@@ -24,7 +24,7 @@ export const getKubernetesClusterIDs = () => {
  * @param {Array.<string>} kubernetesConfig
  * @returns
  */
-export const getKubernetesClusterIDsFromContextID = (selectedContexts: Array<string>, kubernetesConfig: Array<string>) => {
+export const getKubernetesClusterIDsFromContextID = (selectedContexts: string[], kubernetesConfig: string[]) => {
     if (selectedContexts.length === 0) {
         return []
     }

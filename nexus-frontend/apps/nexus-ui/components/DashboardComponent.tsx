@@ -157,7 +157,7 @@ class DashboardComponent extends Component<Props, State> {
             updateControlPlane = true;
         }
 
-        if (JSON.stringify(prevState.dataPlaneState) != JSON.stringify(this.state.dataPlaneState)) {
+        if (JSON.stringify(prevState.dataPlaneState) !== JSON.stringify(this.state.dataPlaneState)) {
             updateDataPlane = true;
         }
 
@@ -209,9 +209,9 @@ class DashboardComponent extends Component<Props, State> {
      * disposeWorkloadWidgetSubscription
      */
     disposeWorkloadWidgetSubscription = () => {
-        this.state.namespaceQuery && this.state.namespaceQuery.unsubscribe();
-        this.state.clusterResourcesQuery && this.state.clusterResourcesQuery.unsubscribe();
-        this.state.clusterResourcesSubscription && this.state.clusterResourcesSubscription.unsubscribe();
+        this.state.namespaceQuery?.unsubscribe();
+        this.state.clusterResourcesQuery?.unsubscribe();
+        this.state.clusterResourcesSubscription?.unsubscribe();
     }
 
     /**
@@ -298,17 +298,17 @@ class DashboardComponent extends Component<Props, State> {
             },
             (result) => {
                 self.props.updateProgress({showProgress: false}); // redux store
-                if (typeof result !== "undefined" && result?.prometheusURL && result?.prometheusURL != "") {
+                if (typeof result !== "undefined" && result?.prometheusURL && result?.prometheusURL !== "") {
                     fetchAvailableAddons(selector).subscribe({ // graphql addons status query
                         next: (res) => {
                             res?.addonsState?.forEach((addon) => {
-                                if (addon.name === "prometheus" && (self.state.prometheusURL === "" || self.state.prometheusURL == undefined)) {
-                                    self.setState({prometheusURL: "http://" + addon.endpoint})
+                                if (addon.name === "prometheus" && (self.state.prometheusURL === "" || self.state.prometheusURL === undefined)) {
+                                    self.setState({prometheusURL: `http://${addon.endpoint}`})
                                     submitPrometheusConfigure(self, () => console.log("Prometheus added"));
                                 }
                             });
                         },
-                        error: (err) => console.log("error registering prometheus: " + err),
+                        error: (err) => console.log(`error registering prometheus: ${err}`),
                     });
                 }
             },
@@ -324,12 +324,12 @@ class DashboardComponent extends Component<Props, State> {
             },
             (result) => {
                 self.props.updateProgress({showProgress: false});
-                if (typeof result !== "undefined" && result?.grafanaURL && result?.grafanaURL != "") {
+                if (typeof result !== "undefined" && result?.grafanaURL && result?.grafanaURL !== "") {
                     fetchAvailableAddons(selector).subscribe({
                         next: (res) => {
                             res?.addonsState?.forEach((addon) => {
-                                if (addon.name === "grafana" && (self.state.grafanaURL === "" || self.state.grafanaURL == undefined)) {
-                                    self.setState({grafanaURL: "http://" + addon.endpoint})
+                                if (addon.name === "grafana" && (self.state.grafanaURL === "" || self.state.grafanaURL === undefined)) {
+                                    self.setState({grafanaURL: `http://${addon.endpoint}`})
                                     submitGrafanaConfigure(self, () => {
                                         self.state.selectedBoardsConfigs.push(self.state.boardConfigs);
                                         console.info("Grafana added");
@@ -337,7 +337,7 @@ class DashboardComponent extends Component<Props, State> {
                                 }
                             });
                         },
-                        error: (err) => console.log("error registering grafana: " + err),
+                        error: (err) => console.log(`error registering grafana: ${err}`),
                     });
                 }
             },
@@ -349,11 +349,11 @@ class DashboardComponent extends Component<Props, State> {
         fetchAvailableAddons(selector).subscribe({
             next: (res) => {
                 res?.addonsState?.forEach((addon) => {
-                    if (addon.name === "prometheus" && (self.state.prometheusURL === "" || self.state.prometheusURL == undefined)) {
-                        self.setState({prometheusURL: "http://" + addon.endpoint})
+                    if (addon.name === "prometheus" && (self.state.prometheusURL === "" || self.state.prometheusURL === undefined)) {
+                        self.setState({prometheusURL: `http://${addon.endpoint}`})
                         submitPrometheusConfigure(self, () => console.log("Prometheus connected"));
-                    } else if (addon.name === "grafana" && (self.state.grafanaURL === "" || self.state.grafanaURL == undefined)) {
-                        self.setState({grafanaURL: "http://" + addon.endpoint})
+                    } else if (addon.name === "grafana" && (self.state.grafanaURL === "" || self.state.grafanaURL === undefined)) {
+                        self.setState({grafanaURL: `http://${addon.endpoint}`})
                         submitGrafanaConfigure(self, () => {
                             self.state.selectedBoardsConfigs.push(self.state.boardConfigs);
                             console.log("Grafana added");
@@ -361,7 +361,7 @@ class DashboardComponent extends Component<Props, State> {
                     }
                 });
             },
-            error: (err) => console.log("error registering addons: " + err),
+            error: (err) => console.log(`error registering addons: ${err}`),
         });
     }
 
@@ -405,7 +405,7 @@ class DashboardComponent extends Component<Props, State> {
                     })
                     self.setState({namespaceList: namespaces})
                 },
-                error: (err) => console.log("error at namespace fetch: " + err),
+                error: (err) => console.log(`error at namespace fetch: ${err}`),
             })
         this.setState({namespaceQuery})
     }
@@ -467,7 +467,7 @@ class DashboardComponent extends Component<Props, State> {
             if (Array.isArray(dataPlanesData?.dataPlanesState)) {
                 const dataplane = dataPlanesData.dataPlanesState.find((mesh_: { name: any }) => mesh_.name === mesh.name)
 
-                if (Array.isArray(dataplane?.proxies)) proxies = dataplane.proxies
+                if (Array.isArray(dataplane?.proxies)) { proxies = dataplane.proxies }
             }
 
             const processedMember = mesh?.members?.map((member: {
@@ -519,7 +519,7 @@ class DashboardComponent extends Component<Props, State> {
     };
 
     render() {
-        return <div></div>
+        return <div />
     }
 }
 

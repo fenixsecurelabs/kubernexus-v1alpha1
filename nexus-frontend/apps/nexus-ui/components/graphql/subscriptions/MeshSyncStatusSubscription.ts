@@ -23,6 +23,6 @@ export default function subscribeMeshSyncStatusEvents(dataCB, contextIds) {
         subscription: meshSyncStatusSubscription,
         variables: {kubernetesContextIDs: contextIds},
         onNext: dataCB,
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 }

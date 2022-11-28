@@ -51,7 +51,7 @@ const Extensions = ({ classes }) => {
                 <title>Extensios | Meshery </title>
             </Head>
             <Grid>
-                <Grid item {...INITIAL_GRID_SIZE}>
+                <Grid item={true} {...INITIAL_GRID_SIZE}>
                     <div className={classes.card}>
                         <Typography className={classes.frontContent} variant="h5" component="div">
                             {"MeshMap"}

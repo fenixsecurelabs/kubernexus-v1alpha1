@@ -12,6 +12,6 @@ export default function subscribeBrokerStatusEvents(dataCB) {
         subscription: brokerStatusSubscription,
         variables: {},
         onNext: dataCB,
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 }

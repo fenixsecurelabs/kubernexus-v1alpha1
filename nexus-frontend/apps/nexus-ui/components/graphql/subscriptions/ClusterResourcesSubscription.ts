@@ -17,6 +17,6 @@ export default function subscribeClusterResources(dataCB, variables) {
         subscription: clusterResourcesSubscription,
         variables: variables,
         onNext: dataCB,
-        onError: (error) => console.log(`Cluster Resources Subscription error:`, error),
+        onError: (error) => console.log("Cluster Resources Subscription error:", error),
     });
 }

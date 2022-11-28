@@ -236,11 +236,12 @@ export const reducer = (state = initialState, action) => {
             return state.mergeDeep({ anonymousUsageStats: action.anonymousUsageStats });
         case actionTypes.UPDATE_ANONYMOUS_PERFORMANCE_RESULTS:
             return state.mergeDeep({ anonymousPerfResults: action.anonymousPerfResults });
-        case actionTypes.UPDATE_ADAPTERS_INFO:
+        case actionTypes.UPDATE_ADAPTERS_INFO: {
             // console.log(`received an action to update mesh info: ${JSON.stringify(action.mesh)} and New state: ${JSON.stringify(state.mergeDeep({ mesh: action.mesh }))}`);
             state = state.update(['meshAdapters'], val => fromJS([]));
             state = state.update(['meshAdaptersts'], val => fromJS(new Date()));
             return state.mergeDeep({ meshAdapters: action.meshAdapters });
+        }
         // case actionTypes.UPDATE_MESH_RESULTS:
         //   // console.log(`received an action to update mesh results: ${JSON.stringify(action.results)} and New state: ${JSON.stringify(state.mergeDeep({ results: action.results }))}`);
         //   // const results = state.get('results').get('results').toArray().concat(action.results);
@@ -264,19 +265,22 @@ export const reducer = (state = initialState, action) => {
             } else {
                 return state.deleteIn(['results_selection', action.page]);
             }
-        case actionTypes.UPDATE_GRAFANA_CONFIG:
+        case actionTypes.UPDATE_GRAFANA_CONFIG: {
             action.grafana.ts = new Date();
             return state.update(['grafana'], val => fromJS(action.grafana));
+        }
 
-        case actionTypes.UPDATE_PROMETHEUS_CONFIG:
+        case actionTypes.UPDATE_PROMETHEUS_CONFIG: {
             action.prometheus.ts = new Date();
             return state.update(['prometheus'], val => fromJS(action.prometheus));
+        }
 
         case actionTypes.UPDATE_STATIC_BOARD_CONFIG:
             return state.update(['staticPrometheusBoardConfig'], val => fromJS(action.staticPrometheusBoardConfig));
-        case actionTypes.CLEAR_RESULTS_SELECTION:
+        case actionTypes.CLEAR_RESULTS_SELECTION: {
             state = state.deleteIn(['results_selection']);
             return state.mergeDeep({ results_selection: fromJS({}) });
+        }
 
         case actionTypes.UPDATE_PROGRESS:
             return state.mergeDeep({ showProgress: action.showProgress });

@@ -27,6 +27,6 @@ export default function subscribeOperatorStatusEvents(dataCB, contextIds) {
         subscription: operatorStatusSubscription,
         variables: {kubernetesContextIDs: contextIds},
         onNext: dataCB,
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 }

@@ -16,7 +16,7 @@ export default function subcribeControllersStatus(dataCB) {
         subscription: meshSyncEventsSubscription,
         variables: {kubernetesContextIDs: [""]},
         onNext: dataCB,
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 }
 

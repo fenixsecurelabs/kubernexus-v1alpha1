@@ -14,6 +14,6 @@ export default function changeOperatorStatus(onComplete, variables) {
         mutation: operatorStatusMutation,
         variables: vars,
         onCompleted: onComplete,
-        onError: error => console.log(`An error occured: `, error),
+        onError: error => console.log("An error occured: ", error),
     });
 }

@@ -15,6 +15,6 @@ export default function subscribeAddonStatusEvents(dataCB, variables) { // todo:
         subscription: addonStatusSubscription,
         variables: {filter: variables},
         onNext: dataCB,
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 }

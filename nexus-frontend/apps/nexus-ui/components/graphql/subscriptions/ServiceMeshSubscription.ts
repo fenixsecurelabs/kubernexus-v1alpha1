@@ -17,7 +17,7 @@ export default function subscribeServiceMeshEvents(dataCB, variables) {
             // dataCB(res, null)
             controlRes = res
         },
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 
     requestSubscription(environment, {
@@ -26,11 +26,11 @@ export default function subscribeServiceMeshEvents(dataCB, variables) {
             filter: variables,
         },
         onNext: (dataRes) => {
-            if (controlRes) dataCB(controlRes, dataRes)
+            if (controlRes) { dataCB(controlRes, dataRes) }
         },
         onError: (error) => {
-            if (controlRes) dataCB(controlRes, null)
-            console.log(`An error occured:`, error)
+            if (controlRes) { dataCB(controlRes, null) }
+            console.log("An error occured:", error)
         },
     });
 

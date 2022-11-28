@@ -82,7 +82,7 @@ class GrafanaComponent extends Component<Props, State> {
     componentDidMount(): void {
         const self = this;
 
-        if (self.props.isMeshConfigured)
+        if (self.props.isMeshConfigured) {
             dataFetch(
                 "/api/telemetry/metrics/grafana/config",
                 {
@@ -94,7 +94,7 @@ class GrafanaComponent extends Component<Props, State> {
                 },
                 (result) => {
                     self.props.updateProgress({showProgress: false});
-                    if (!(typeof result !== "undefined" && result?.grafanaURL && result?.grafanaURL != "")) {
+                    if (!(typeof result !== "undefined" && result?.grafanaURL && result?.grafanaURL !== "")) {
                         let selector = {
                             type: "ALL_MESH",
                             k8sClusterIDs: this.getKubernetesClusterIDs()
@@ -103,7 +103,7 @@ class GrafanaComponent extends Component<Props, State> {
                             next: (res) => {
                                 res?.addonsState?.forEach((addon) => {
                                     if (addon.name === "grafana" && self.state.grafanaURL === "") {
-                                        self.setState({grafanaURL: "http://" + addon.endpoint})
+                                        self.setState({grafanaURL: `http://${addon.endpoint}`})
                                         submitGrafanaConfigure(self, () => self.setState({
                                             selectedBoardsConfigs: self.state.grafanaBoards?.[2]
                                                 ? [self.state.grafanaBoards[2]]
@@ -112,12 +112,13 @@ class GrafanaComponent extends Component<Props, State> {
                                     }
                                 });
                             },
-                            error: (err) => console.log("error registering Grafana: " + err),
+                            error: (err) => console.log(`error registering Grafana: ${err}`),
                         });
                     }
                 },
                 self.handleError("There was an error communicating with grafana config")
             )
+        }
     }
 
     /**

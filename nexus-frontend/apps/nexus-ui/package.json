@@ -46,6 +46,7 @@
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "relay-compiler": "^14.1.0",
+    "rome": "^10.0.1",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.3"
   }

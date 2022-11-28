@@ -16,7 +16,7 @@ export default function subscribeMesheryControllersStatus(dataCB) {
         subscription: mesheryControllersStatusSubscription,
         variables: {kubernetesContextIDs: [""]},
         onNext: dataCB,
-        onError: (error) => console.log(`An error occured:`, error),
+        onError: (error) => console.log("An error occured:", error),
     });
 }
 
