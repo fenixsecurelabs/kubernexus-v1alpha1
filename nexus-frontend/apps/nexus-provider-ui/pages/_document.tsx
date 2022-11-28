@@ -18,11 +18,12 @@ class MesheryDocument extends Document {
     }
 }
 
+/*
 MesheryDocument.getInitialProps = (ctx) => {
     let pageContext;
 
-    const page = ctx.renderPage((Component) => {
-        const WrappedComponent = (props) => {
+    const page = ctx.renderPage((Component: any) => {
+        const WrappedComponent = (props: any) => {
             pageContext = props.pageContext
         }
 
@@ -43,5 +44,6 @@ MesheryDocument.getInitialProps = (ctx) => {
         pageContext,
     }
 }
+*/
 
 export default MesheryDocument;

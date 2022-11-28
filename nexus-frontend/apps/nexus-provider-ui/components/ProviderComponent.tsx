@@ -19,7 +19,7 @@ type State = {
     isLoading: boolean
 }
 
-class ProviderComponent extends Component<Props, State> {
+class ProviderComponent extends Component<any, any> {
     static propTypes: { classes: PropTypes.Validator<object>; };
 
     state: State = {
@@ -77,14 +77,14 @@ class ProviderComponent extends Component<Props, State> {
         }
     }
     */
-    
+
     handleModalOpen() {
         const self = this;
         return () => {
             self.setState({ modalOpen: true })
         }
 
-     }
+    }
 
     handleModalClose() {
         const self = this;
@@ -98,15 +98,15 @@ class ProviderComponent extends Component<Props, State> {
         return () => {
             self.setState({ open: !self.state.open })
         }
-     }
+    }
 
     handleMenuItemClient = (e: any, provider: string) => {
         e.preventDefault()
         this.setState({ selectedProvider: provider, open: false, isLoading: true });
         window.location.href = `/api/provider?provider=${encodeURIComponent(provider)}`
-     };
+    };
 
-    render(){
+    render() {
         const self = this;
         const { classes } = this.props;
         const { availableProviders, modalOpen, isLoading, open, selectedProvider } = this.state
@@ -159,6 +159,6 @@ class ProviderComponent extends Component<Props, State> {
 
 ProviderComponent.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
 
 export default ProviderComponent;

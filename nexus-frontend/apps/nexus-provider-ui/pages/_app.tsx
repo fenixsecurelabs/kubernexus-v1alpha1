@@ -24,7 +24,7 @@ class MesheryProviderApp extends App<Props, State>{
   }
 
   render() {
-    const { Component, pageProps, classes } = this.props;
+    const { Component, pageProps } = this.props;
     return (
       <NoSsr>
         <GlobalStyles styles={{
@@ -40,7 +40,7 @@ class MesheryProviderApp extends App<Props, State>{
           <div>
             <main>
               <Paper>
-                <Component pageContext={this.pageContext} {...pageProps} />
+                <Component {...pageProps} />
               </Paper>
             </main>
             <footer>
