@@ -8,9 +8,10 @@ This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes th
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
+- `nexus-ui`: a [Next.js](https://nextjs.org/) app
+- `nexus-provider-ui`: another [Next.js](https://nextjs.org/) app
+- `ui`: a stub React component library shared by both `nexus-ui` and `nexus-provider-ui` applications
+- `lib`: a Typescript library of shared by both `nexus-ui` and `nexus-provider-ui`
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
@@ -23,6 +24,7 @@ This turborepo has some additional tools already setup for you:
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
+- [Rome](https://rome.tools) for both code linting and code formatting (alpha feature)
 
 ### Build
 

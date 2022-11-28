@@ -29,6 +29,7 @@ importers:
       prop-types: ^15.8.1
       react: ^18.2.0
       react-dom: ^18.2.0
+      rome: ^10.0.1
       tsconfig: workspace:*
       typescript: ^4.5.3
       ui: workspace:*
@@ -50,6 +51,7 @@ importers:
       '@types/react': 18.0.25
       eslint: 7.32.0
       eslint-config-custom: link:../../packages/eslint-config-custom
+      rome: 10.0.1
       tsconfig: link:../../packages/tsconfig
       typescript: 4.9.3
 
