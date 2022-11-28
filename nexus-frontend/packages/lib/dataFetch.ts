@@ -41,7 +41,7 @@ const dataFetch = (url: string, options: Object, successFn: ((value: any) => any
  * @param {Record<string, any>} options HTTP request options 
  * @returns 
  */
-export function promisifiedDataFetch(url: string, options: {Record: any}): Promise<unknown> {
+export function promisifiedDataFetch(url: string, options: {}) {
     return new Promise((resolve, reject) => {
         dataFetch(url, options, result => resolve(result), err => reject(err))
     }) 

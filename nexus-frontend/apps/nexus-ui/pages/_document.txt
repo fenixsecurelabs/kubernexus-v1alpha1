@@ -1,0 +1,107 @@
+import * as Preact from 'preact/compat';
+import PropTypes from 'prop-types';
+import Document, { Head, Main, NextScript, Html } from 'next/document';
+
+function setupGA() {
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() { 
+    dataLayer.push(arguments);
+  }
+
+  fetch("/api/user/prefs", { credentials: 'include' })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res?.anonymousUsageStats) {
+        gtag("js", new Date());
+        gtag("config", "G-8Q51RLT8TZ", {
+          page_path: window.location.pathname,
+        });
+      }
+    })
+    .catch((err) => console.error(err));
+}
+
+export class MesheryDocument extends Document {
+  render(): JSX.Element {
+    return (
+      <Html lang="en" dir="ltr">
+        <Head>
+          <meta charSet="utf-8" />
+          <link rel="icon" href="/static/favicon.png" />
+
+
+
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=G-8Q51RLT8TZ`} />
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `${"" + setupGA}; setupGA();`,
+            }}
+          />
+
+          {/** 
+          * For hiding the scrollbar without losing the scroll functionality
+          * add the class "hide-scrollbar" to hide scrollbar for that element
+          * Only applicable for Chrome, safari and newest version of Opera
+          */}
+          <style type="text/css">{"\
+            .hide-scrollbar::-webkit-scrollbar {\
+              width: 0 !important;\
+            }\
+          .reduce-scrollbar-width::-webkit-scrollbar {\
+              width: 0.3em !important;\
+            }\
+          "}
+          </style>
+
+
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+MesheryDocument.getInitialProps = (ctx) => {
+  let pageContext;
+  const page = ctx.renderPage((Component) => {
+    const WrappedComponent = (props) => {
+      pageContext = props.pageContext;
+      return <Component {...props} />;
+    };
+
+    WrappedComponent.propTypes = {
+      pageContext: PropTypes.object.isRequired,
+    };
+
+    return WrappedComponent;
+  });
+
+  let css;
+  // it might be undefined, e.g. after an error.
+  if (pageContext) {
+    // css = pageContext.sheetsRegistry.toString();
+  }
+
+  return {
+    ...page,
+    pageContext,
+    // styles fragment is rendered after the app and page rendering finish.
+    styles: (
+      <Preact.Fragment>
+        <style
+          id="jss-server-side"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: css }}
+        />
+        {flush() || null}
+      </Preact.Fragment>
+    ),
+  };
+};
+
+export default MesheryDocument;
