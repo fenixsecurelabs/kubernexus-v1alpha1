@@ -1,0 +1,62 @@
+"""
+Subscription
+"""
+type Subscription {
+    # Listen to changes in status of Addons available (Eg. Prometheus and Grafana)
+    listenToAddonState(
+        # Select Mesh Type
+        filter: ServiceMeshFilter
+    ): [AddonList!]!
+
+    # Listen to changes in Control Plane data for a Service Mesh (or all) in your cluster
+    listenToControlPlaneState(
+        # Filter Control Plane Query
+        filter: ServiceMeshFilter
+    ): [ControlPlane!]!
+
+    # Listen to changes in Data Plane data for a Service Mesh (or all) in your cluster
+    listenToDataPlaneState(
+        # Filter Control Plane Query
+        filter: ServiceMeshFilter
+    ): [DataPlane!]!
+
+    # Listen to changes in status of Meshery Operator in your cluster
+    listenToOperatorState(
+        kubernetesContextIDs: [String!]
+    ): OperatorStatusPerKubernetesContext
+
+    # Listen to changes in the list of available Namespaces in your cluster
+    listenToMeshSyncEvents(
+        kubernetesContextIDs: [String!]
+    ): OperatorControllerStatusPerKubernetesContext
+
+    # Listen to changes in Performance Profiles
+    subscribePerfProfiles(selector: PageFilter!): PerfPageProfiles!
+
+    # Listen to all results for profile ID
+    subscribePerfResults(selector: PageFilter!, profileID: String!): PerfPageResult!
+
+    # Listen to changes in Broker (NATS) Connection
+    subscribeBrokerConnection: Boolean!
+
+    # Listen to changes in the status of meshery controllers
+    subscribeMesheryControllersStatus(
+        kubernetesContextIDs: [String!]
+    ): [MesheryControllersStatusListItem!]!
+
+    # Listen to the events that MeshSync is sending through Meshery Broker.
+    # Note: It does not listen to the changes in meshery database, but to meshsync events
+    subscribeMeshSyncEvents(
+        kubernetesContextIDs: [String!]
+    ) : MeshSyncEvent!
+
+    subscribeConfiguration(applicationSelector: PageFilter!, patternSelector: PageFilter!, filterSelector: PageFilter!) : ConfigurationPage!
+
+    subscribeClusterResources(
+        kubernetesContextIDs: [String!],
+        namespace: String!
+    ): ClusterResources!
+
+    subscribeK8sContext(selector: PageFilter!) : KubernetesContextsPage!
+
+}

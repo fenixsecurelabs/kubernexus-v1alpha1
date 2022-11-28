@@ -1,0 +1,23 @@
+"""
+Service Mesh Filtering
+"""
+input ServiceMeshFilter {
+    type: MeshType
+    kubernetesClusterIds: [String!]
+}
+
+"""
+Control Plane
+"""
+type ControlPlaneMember {
+    name: String!
+    component: String!
+    version: String!
+    namespace: String!
+    data_planes: [Container!]
+}
+
+type ControlPlane {
+    name: String!
+    members: [ControlPlaneMember!]!
+}

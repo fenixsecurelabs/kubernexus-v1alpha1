@@ -1,0 +1,31 @@
+"""
+Catalog
+"""
+type CatalogFilter {
+    id: ID!
+    name: String!
+    filterFile: String!
+    userID: String!
+    location: Location!
+    visibility: String!
+    catalogData: Map
+    createdAt: String
+    updatedAt: String
+}
+
+type CatalogPattern {
+    id: ID!
+    name: String!
+    userID: String!
+    patternFile: String!
+    location: Location!
+    visibility: String!
+    catalogData: Map
+    createdAt: String
+    updatedAt: String
+}
+
+input CatalogSelector {
+    search: String!
+    order: String!
+}

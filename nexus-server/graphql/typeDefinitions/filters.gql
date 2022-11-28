@@ -1,0 +1,21 @@
+"""
+Filters
+"""
+type FilterResult {
+    id: ID!
+    name: String!
+    filterFile: String!
+    userID: String!
+    location: Location!
+    visibility: String!
+    catalogData: Map
+    createdAt: String
+    updatedAt: String
+}
+
+type FilterPage {
+    page: Int!
+    pageSize: Int!
+    totalCount: Int!
+    filters: [FilterResult]
+}

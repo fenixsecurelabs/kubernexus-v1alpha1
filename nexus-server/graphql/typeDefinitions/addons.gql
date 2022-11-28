@@ -1,0 +1,13 @@
+"""
+Add Ons
+"""
+type AddonList {
+    name: String!
+    owner: String!
+}
+
+input AddonStatusInput {
+    selector: MeshType
+    kubernetesContextID: String!
+    targetStatus: Status!
+}

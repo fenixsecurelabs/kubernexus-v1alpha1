@@ -1,0 +1,20 @@
+"""
+Applications
+"""
+type ApplicationResult {
+    id: ID!
+    name: String!
+    applicationFile: String!
+    type: NullString!
+    userID: String!
+    location: Location!
+    createdAt: String
+    updatedAt: String
+}
+
+type ApplicationPage {
+    page: Int!
+    pageSize: Int!
+    totalCount: Int!
+    applications: [ApplicationResult]
+}

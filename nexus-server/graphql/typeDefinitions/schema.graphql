@@ -1,0 +1,599 @@
+"""
+Add Ons
+"""
+type AddonList {
+    name: String!
+    owner: String!
+}
+
+input AddonStatusInput {
+    selector: MeshType
+    kubernetesContextID: String!
+    targetStatus: Status!
+}"""
+Applications
+"""
+type ApplicationResult {
+    id: ID!
+    name: String!
+    applicationFile: String!
+    type: NullString!
+    userID: String!
+    location: Location!
+    createdAt: String
+    updatedAt: String
+}
+
+type ApplicationPage {
+    page: Int!
+    pageSize: Int!
+    totalCount: Int!
+    applications: [ApplicationResult]
+}"""
+Catalog
+"""
+type CatalogFilter {
+    id: ID!
+    name: String!
+    filterFile: String!
+    userID: String!
+    location: Location!
+    visibility: String!
+    catalogData: Map
+    createdAt: String
+    updatedAt: String
+}
+
+type CatalogPattern {
+    id: ID!
+    name: String!
+    userID: String!
+    patternFile: String!
+    location: Location!
+    visibility: String!
+    catalogData: Map
+    createdAt: String
+    updatedAt: String
+}
+
+input CatalogSelector {
+    search: String!
+    order: String!
+}"""
+Maps an arbitrary GraphQL value to a map[string]interface{} Go type.
+"""
+scalar Map
+
+"""
+Maps a Time GraphQL scalar to a Go time.Time struct. This scalar adheres to the time.RFC3339Nano format.
+"""
+scalar Time
+
+"""
+Maps an arbitrary GraphQL value to a interface{} Go type.
+"""
+scalar Any
+
+"""
+MeshType indicates the type of Service Mesh
+"""
+enum MeshType {
+    ALL_MESH
+    INVALID_MESH
+    APP_MESH
+    CILIUM_SERVICE_MESH
+    CITRIX_SERVICE_MESH
+    CONSUL
+    ISTIO
+    KUMA
+    LINKERD
+    NETWORK_SERVICE_MESH
+    NGINX_SERVICE_MESH
+    OCTARINE
+    OPEN_SERVICE_MESH
+    TANZU
+}
+
+enum MesheryController {
+    BROKER
+    OPERATOR
+    MESHSYNC
+}
+
+enum MesheryControllerStatus {
+    DEPLOYED
+    NOTDEPLOYED
+    DEPLOYING
+    UNKNOWN
+}
+
+type MesheryControllersStatusListItem {
+    contextID: String!
+    controller: MesheryController!
+    status: MesheryControllerStatus!
+}
+
+type MeshSyncEvent {
+    type: String!
+    object: Any!
+    contextID: String!
+}
+
+type MesheryResult {
+    mesheryID: String
+    name: String
+    mesh: String
+    performanceProfile: String
+    testID: String
+    runnerResults: Map
+    serverMetrics: Map
+    serverBoardConfig: String
+    testStartTime: String
+    userID: String
+    updatedAt: String
+    createdAt: String
+}
+
+"""
+Define Status
+"""
+enum Status {
+    ENABLED
+    CONNECTED
+    DISABLED
+    PROCESSING
+    UNKNOWN
+}
+
+"""
+Define Error
+"""
+type Error {
+    code: String!
+    description: String!
+}
+
+"""
+Define Container
+"""
+type ContainerStatus {
+    containerStatusName: String!
+    image: String!
+    state: Any
+    lastState: Any
+    ready: Boolean!
+    restartCount: Any
+    started: Boolean!
+    imageID: Any
+    containerID: Any
+}
+
+type ContainerPort {
+    name: String
+    containerPort: Int!
+    protocol: String!
+}
+
+type Container {
+    controlPlaneMemberName: String!
+    containerName: String!
+    image: String!
+    status: ContainerStatus
+    ports: [ContainerPort]
+    resources: Any
+}
+
+"""
+Define Namespace
+"""
+type NameSpace {
+    namespace: String!
+}
+
+"""
+Dashboard
+"""
+type Resource {
+    kind: String!
+    count: Int!
+}
+
+type ClusterResources {
+    resources: [Resource!]!
+}
+
+"""
+Location
+"""
+type Location {
+    branch: String
+    host: String
+    path: String
+    type: String
+}
+
+"""
+NullString
+"""
+type NullString {
+    String: String!
+    Valid: Boolean
+}
+
+input PageFilter {
+    page: String!
+    pageSize: Int!
+    order: String
+    search: String
+    from: String
+    to: String
+}
+
+"""
+ReSync
+"""
+input ResyncActions {
+    clearDB: String!
+    Resync: String!
+    hardReset: String!
+}
+
+"""
+OAM Capbility
+"""
+type OAMCapability {
+    oamDefinition: Any
+    id: String
+    oamRefSchema: String
+    host: String
+    restricted: Boolean
+    metadata: Any
+}
+
+type KubectlDescribeDetails {
+  describe: String
+  contextID: String
+}"""
+Configuration
+"""
+
+type ConfigurationPage {
+    applications: ApplicationPage
+    patterns: PatternPageResult
+    filters: FilterPage
+}"""
+Service Mesh Filtering
+"""
+input ServiceMeshFilter {
+    type: MeshType
+    kubernetesClusterIds: [String!]
+}
+
+"""
+Control Plane
+"""
+type ControlPlaneMember {
+    name: String!
+    component: String!
+    version: String!
+    namespace: String!
+    data_planes: [Container!]
+}
+
+type ControlPlane {
+    name: String!
+    members: [ControlPlaneMember!]!
+}"""
+Data Plane
+"""
+type DataPlane {
+    name: String!
+    proxies: [Container!]!
+}"""
+Filters
+"""
+type FilterResult {
+    id: ID!
+    name: String!
+    filterFile: String!
+    userID: String!
+    location: Location!
+    visibility: String!
+    catalogData: Map
+    createdAt: String
+    updatedAt: String
+}
+
+type FilterPage {
+    page: Int!
+    pageSize: Int!
+    totalCount: Int!
+    filters: [FilterResult]
+}"""
+Kubernetes Context
+"""
+type KubernetesContextsPage {
+    totalCount: Int!
+    contexts: [KubernetesContext]
+}
+
+type KubernetesContext {
+    id: String!
+    name: String!
+    auth: Map!
+    cluster: Map!
+    server: String!
+    owner: ID!
+    createdBy: ID!
+    mesheryInstanceID: ID!
+    kubernetesServerID: ID!
+    deploymentType: String!
+    updatedAt: String!
+    createdAt: String!
+}"""
+Operator
+"""
+
+type OperatorStatus {
+    status: Status!
+    version: String!
+    controllers: [OperatorControllerStatus!]
+    error: Error
+    contextID: String!
+}
+
+# Meshery Operator status input
+input OperatorStatusInput {
+    targetStatus: String!
+    contextID: String!
+}
+
+# Meshery Operator controllers' status
+type OperatorControllerStatus {
+    name: String!
+    version: String!
+    status: Status!
+    error: Error!
+    contextID: String!
+}
+
+# Meshery Operator per Kubernetes context status
+type OperatorStatusPerKubernetesContext {
+    contextID: String!
+    operatorStatus: OperatorStatus!
+}
+
+# Meshery Operator Controller per Kubernetes context status
+type OperatorControllerStatusPerKubernetesContext {
+    contextID: String!
+    OperatorControllerStatus: OperatorControllerStatus!
+}"""
+Patterns
+"""
+type PatternPage {
+    id: ID!
+    name: String!
+    userID: String!
+    location: Location!
+    patternFile: String!
+    visibility: String!
+    catalogData: Map
+    canSupport: Boolean!
+    errmsg: String
+    createdAt: String
+    updatedAt: String
+}
+
+type PatternResult {
+    id: ID!
+    name: String!
+    userID: String!
+    location: Location!
+    patternFile: String!
+    visibility: String!
+    catalogData: Map
+    canSupport: Boolean!
+    errmsg: String
+    createdAt: String
+    updatedAt: String
+}
+
+type PatternPageResult {
+    page: Int!
+    pageSize: Int!
+    totalCount: Int!
+    patterns: [PatternResult]
+}"""
+Performance
+"""
+type PerfPageResult{
+    page: Int!
+    pageSize: Int!
+    totalCount: Int!
+    results: [MesheryResult]
+}
+
+type PerfProfile {
+    concurrentRequest: Int!
+    createdAt: String
+    duration: String!
+    endpoints: [String]
+    id: String!
+    lastRun: String
+    loadGenerators: String
+    name: String
+    qps: Int
+    totalResults: Int
+    updatedAt: String
+    userID: String
+    requestHeaders: String
+    requestCookies: String
+    requestBody: String
+    contentType: String
+    serviceMesh: String
+}
+
+type PerfPageProfiles {
+    page: Int!
+    pageSize: Int!
+    totalCount: Int!
+    profiles: [PerfProfile]
+}
+"""
+Root
+"""
+type Query {
+    # Query details about Addons available (Eg. Prometheus and Grafana)
+    getAvailableAddons(
+    # Select Mesh Type
+        filter: ServiceMeshFilter
+    ): [AddonList!]!
+
+    # Query Control Plane data for a Service Mesh (or all) in your cluster
+    getControlPlanes(
+    # Filter Control Plane Query
+    filter: ServiceMeshFilter
+    ): [ControlPlane!]!
+
+    # Query Data Plane information for a Service Mesh (or all) in your cluster
+    getDataPlanes(
+    # Filter Control Plane Query
+    filter: ServiceMeshFilter
+    ): [DataPlane!]!
+
+    # Query status of Meshery Operator in your cluster
+    getOperatorStatus(
+        kubernetesContextID: String!
+    ): OperatorStatus
+
+    # Query to resync the cluster discovery
+    resyncCluster(
+    # Selector to control several resync actions
+    selector: ResyncActions
+    kubernetesContextID: String!
+    ): Status!
+
+    # Check the Meshsync Status
+    getMeshsyncStatus(
+        kubernetesContextID: String!
+    ): OperatorControllerStatus!
+
+    # Check the Meshsync Status and deploy if not enabled
+    deployMeshsync( # what to do in-order to deploy meshsync on multiple clusters/contexts
+        kubernetesContextID: String!
+    ): Status!
+
+    # Check is Meshey Server is connected to NATS
+    getNatsStatus(
+        kubernetesContextID: String!
+    ): OperatorControllerStatus!
+
+    # Check is Meshey Server is connected to NATS, if not connect to the NATS Server
+    connectToNats(
+        kubernetesContextID: String!
+    ): Status!
+
+    # Query available Namespaces in your cluster
+    getAvailableNamespaces(
+        kubernetesClusterIDs: [String!]
+    ): [NameSpace!]!
+
+    # Query for performance result
+    getPerfResult(id: ID!): MesheryResult
+
+    # Query for fetching all results for profile ID
+    fetchResults(selector: PageFilter!, profileID: String!): PerfPageResult!
+
+    # Query for fetching all results for profile ID
+    getPerformanceProfiles(selector: PageFilter!): PerfPageProfiles!
+
+    # Query for fetching all results for profile ID
+    fetchAllResults(selector: PageFilter!): PerfPageResult!
+
+    # Query for fetching all patterns with selector
+    fetchPatterns(selector: PageFilter!): PatternPageResult!
+
+    # Query for getting workloads
+    getWorkloads(name: String, id: ID, trim: Boolean): [OAMCapability]
+    # Query for getting traits
+    getTraits(name: String, id: ID, trim: Boolean): [OAMCapability]
+    # Query for getting scopes
+    getScopes(name: String, id: ID, trim: Boolean): [OAMCapability]
+
+    # Query for getting kubectl describe details with meshkit 
+    getKubectlDescribe(name: String!, kind: String!, namespace: String!): KubectlDescribeDetails!
+
+    # Query for getting Pattern Catalog from remote provider
+    fetchPatternCatalogContent(selector: CatalogSelector): [CatalogPattern!]!
+    # Query for getting Filter Catalog from remote provider
+    fetchFilterCatalogContent(selector: CatalogSelector): [CatalogFilter!]!
+
+    # Query for getting cluster info
+    getClusterResources(kubernetesContextIDs: [String!], namespace: String!): ClusterResources!
+}"""
+Subscription
+"""
+type Subscription {
+    # Listen to changes in status of Addons available (Eg. Prometheus and Grafana)
+    listenToAddonState(
+        # Select Mesh Type
+        filter: ServiceMeshFilter
+    ): [AddonList!]!
+
+    # Listen to changes in Control Plane data for a Service Mesh (or all) in your cluster
+    listenToControlPlaneState(
+        # Filter Control Plane Query
+        filter: ServiceMeshFilter
+    ): [ControlPlane!]!
+
+    # Listen to changes in Data Plane data for a Service Mesh (or all) in your cluster
+    listenToDataPlaneState(
+        # Filter Control Plane Query
+        filter: ServiceMeshFilter
+    ): [DataPlane!]!
+
+    # Listen to changes in status of Meshery Operator in your cluster
+    listenToOperatorState(
+        kubernetesContextIDs: [String!]
+    ): OperatorStatusPerKubernetesContext
+
+    # Listen to changes in the list of available Namespaces in your cluster
+    listenToMeshSyncEvents(
+        kubernetesContextIDs: [String!]
+    ): OperatorControllerStatusPerKubernetesContext
+
+    # Listen to changes in Performance Profiles
+    subscribePerfProfiles(selector: PageFilter!): PerfPageProfiles!
+
+    # Listen to all results for profile ID
+    subscribePerfResults(selector: PageFilter!, profileID: String!): PerfPageResult!
+
+    # Listen to changes in Broker (NATS) Connection
+    subscribeBrokerConnection: Boolean!
+
+    # Listen to changes in the status of meshery controllers
+    subscribeMesheryControllersStatus(
+        kubernetesContextIDs: [String!]
+    ): [MesheryControllersStatusListItem!]!
+
+    # Listen to the events that MeshSync is sending through Meshery Broker.
+    # Note: It does not listen to the changes in meshery database, but to meshsync events
+    subscribeMeshSyncEvents(
+        kubernetesContextIDs: [String!]
+    ) : MeshSyncEvent!
+
+    subscribeConfiguration(applicationSelector: PageFilter!, patternSelector: PageFilter!, filterSelector: PageFilter!) : ConfigurationPage!
+
+    subscribeClusterResources(
+        kubernetesContextIDs: [String!],
+        namespace: String!
+    ): ClusterResources!
+
+    subscribeK8sContext(selector: PageFilter!) : KubernetesContextsPage!
+
+}
+
+type Mutation {
+  # Change the Operator Status
+  changeOperatorStatus(input: OperatorStatusInput): Status!
+}

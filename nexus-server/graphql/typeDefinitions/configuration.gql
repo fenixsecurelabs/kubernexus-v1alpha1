@@ -1,0 +1,9 @@
+"""
+Configuration
+"""
+
+type ConfigurationPage {
+    applications: ApplicationPage
+    patterns: PatternPageResult
+    filters: FilterPage
+}

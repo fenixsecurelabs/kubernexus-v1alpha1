@@ -1,0 +1,38 @@
+"""
+Operator
+"""
+
+type OperatorStatus {
+    status: Status!
+    version: String!
+    controllers: [OperatorControllerStatus!]
+    error: Error
+    contextID: String!
+}
+
+# Meshery Operator status input
+type OperatorStatusInput {
+    targetStatus: String!
+    contextID: String!
+}
+
+# Meshery Operator controllers' status
+type OperatorControllerStatus {
+    name: String!
+    version: String!
+    status: Status!
+    error: Error!
+    contextID: String!
+}
+
+# Meshery Operator per Kubernetes context status
+type OperatorStatusPerKubernetesContext {
+    contextID: String!
+    operatorStatus: OperatorStatus!
+}
+
+# Meshery Operator Controller per Kubernetes context status
+type OperatorControllerStatusPerKubernetesContext {
+    contextID: String!
+    OperatorControllerStatus: OperatorControllerStatus!
+}

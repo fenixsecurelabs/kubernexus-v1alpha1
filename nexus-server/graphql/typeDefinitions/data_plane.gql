@@ -1,0 +1,7 @@
+"""
+Data Plane
+"""
+type DataPlane {
+    Name: String!
+    proxies: [Container!]!
+}

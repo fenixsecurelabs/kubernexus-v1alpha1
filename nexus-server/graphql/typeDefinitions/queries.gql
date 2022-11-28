@@ -1,0 +1,92 @@
+"""
+Root
+"""
+type Query {
+    # Query details about Addons available (Eg. Prometheus and Grafana)
+    getAvailableAddons(
+    # Select Mesh Type
+        filter: ServiceMeshFilter
+    ): [AddonList!]!
+
+    # Query Control Plane data for a Service Mesh (or all) in your cluster
+    getControlPlanes(
+    # Filter Control Plane Query
+    filter: ServiceMeshFilter
+    ): [ControlPlane!]!
+
+    # Query Data Plane information for a Service Mesh (or all) in your cluster
+    getDataPlanes(
+    # Filter Control Plane Query
+    filter: ServiceMeshFilter
+    ): [DataPlane!]!
+
+    # Query status of Meshery Operator in your cluster
+    getOperatorStatus(
+        kubernetesContextID: String!
+    ): OperatorStatus
+
+    # Query to resync the cluster discovery
+    resyncCluster(
+    # Selector to control several resync actions
+    selector: ResyncActions
+    kubernetesContextID: String!
+    ): Status!
+
+    # Check the Meshsync Status
+    getMeshsyncStatus(
+        kubernetesContextID: String!
+    ): OperatorControllerStatus!
+
+    # Check the Meshsync Status and deploy if not enabled
+    deployMeshsync( # what to do in-order to deploy meshsync on multiple clusters/contexts
+        kubernetesContextID: String!
+    ): Status!
+
+    # Check is Meshey Server is connected to NATS
+    getNatsStatus(
+        kubernetesContextID: String!
+    ): OperatorControllerStatus!
+
+    # Check is Meshey Server is connected to NATS, if not connect to the NATS Server
+    connectToNats(
+        kubernetesContextID: String!
+    ): Status!
+
+    # Query available Namespaces in your cluster
+    getAvailableNamespaces(
+        k8sclusterIds: [String!]
+    ): [NameSpace!]!
+
+    # Query for performance result
+    getPerfResult(id: ID!): MesheryResult
+
+    # Query for fetching all results for profile ID
+    fetchResults(selector: PageFilter!, profileID: String!): PerfPageResult!
+
+    # Query for fetching all results for profile ID
+    getPerformanceProfiles(selector: PageFilter!): PerfPageProfiles!
+
+    # Query for fetching all results for profile ID
+    fetchAllResults(selector: PageFilter!): PerfPageResult!
+
+    # Query for fetching all patterns with selector
+    fetchPatterns(selector: PageFilter!): PatternPageResult!
+
+    # Query for getting workloads
+    getWorkloads(name: String, id: ID, trim: Boolean): [OAMCapability]
+    # Query for getting traits
+    getTraits(name: String, id: ID, trim: Boolean): [OAMCapability]
+    # Query for getting scopes
+    getScopes(name: String, id: ID, trim: Boolean): [OAMCapability]
+
+    # Query for getting kubectl describe details with meshkit 
+    getKubectlDescribe(name: String!, kind: String!, namespace: String!): KubectlDescribeDetails!
+
+    # Query for getting Pattern Catalog from remote provider
+    fetchPatternCatalogContent(selector: CatalogSelector): [CatalogPattern!]!
+    # Query for getting Filter Catalog from remote provider
+    fetchFilterCatalogContent(selector: CatalogSelector): [CatalogFilter!]!
+
+    # Query for getting cluster info
+    getClusterResources(kubernetesContextIDs: [String!], namespace: String!): ClusterResources!
+}

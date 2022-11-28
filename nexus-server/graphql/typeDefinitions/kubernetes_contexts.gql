@@ -1,0 +1,22 @@
+"""
+Kubernetes Context
+"""
+type KubernetesContextsPage {
+    totalCount: Int!
+    contexts: [KubernetesContext]
+}
+
+type KubernetesContext {
+    id: String!
+    name: String!
+    auth: Map!
+    cluster: Map!
+    server: String!
+    owner: ID!
+    createdBy: ID!
+    mesheryInstanceID: ID!
+    kubernetesServerID: ID!
+    deploymentType: String!
+    updatedAt: String!
+    createdAt: String!
+}

@@ -1,0 +1,195 @@
+"""
+Maps an arbitrary GraphQL value to a map[string]interface{} Go type.
+"""
+scalar Map
+
+"""
+Maps a Time GraphQL scalar to a Go time.Time struct. This scalar adheres to the time.RFC3339Nano format.
+"""
+scalar Time
+
+"""
+Maps an arbitrary GraphQL value to a interface{} Go type.
+"""
+scalar Any
+
+"""
+MeshType indicates the type of Service Mesh
+"""
+enum MeshType {
+    ALL_MESH
+    INVALID_MESH
+    APP_MESH
+    CILIUM_SERVICE_MESH
+    CITRIX_SERVICE_MESH
+    CONSUL
+    ISTIO
+    KUMA
+    LINKERD
+    NETWORK_SERVICE_MESH
+    NGINX_SERVICE_MESH
+    OCTARINE
+    OPEN_SERVICE_MESH
+    TANZU
+}
+
+enum MesheryController {
+    BROKER
+    OPERATOR
+    MESHSYNC
+}
+
+enum MesheryControllerStatus {
+    DEPLOYED
+    NOTDEPLOYED
+    DEPLOYING
+    UNKNOWN
+}
+
+type MesheryControllersStatusListItem {
+    contextID: String!
+    controller: MesheryController!
+    status: MesheryControllerStatus!
+}
+
+type MeshSyncEvent {
+    type: String!
+    object: Any!
+    contextID: String!
+}
+
+type MesheryResult {
+    mesheryID: String
+    name: String
+    mesh: String
+    performanceProfile: String
+    testID: String
+    runnerResults: Map
+    serverMetrics: Map
+    serverBoardConfig: String
+    testStartTime: String
+    userID: String
+    updatedAt: String
+    createdAt: String
+}
+
+"""
+Define Status
+"""
+enum Status {
+    ENABLED
+    CONNECTED
+    DISABLED
+    PROCESSING
+    UNKNOWN
+}
+
+"""
+Define Error
+"""
+type Error {
+    code: String!
+    description: String!
+}
+
+"""
+Define Container
+"""
+type Container_Status {
+    containerStatusName: String!
+    image: String!
+    state: Any
+    lastState: Any
+    ready: Boolean!
+    restartCount: Any
+    started: Boolean!
+    imageId: Any
+    containerId: Any
+}
+
+type Container_Port {
+    name: String
+    containerPort: Int!
+    protocol: String!
+}
+
+type Container {
+    controlPlaneMemberName: String!
+    containerName: String!
+    image: String!
+    status: Container_Status
+    ports: [Container_Port]
+    resources: Any
+}
+
+"""
+Define Namespace
+"""
+type NameSpace {
+    namespace: String!
+}
+
+"""
+Dashboard
+"""
+type Resource {
+    kind: String!
+    count: Int!
+}
+
+type ClusterResources {
+    resources: [Resource!]!
+}
+
+"""
+Location
+"""
+type Location {
+    branch: String
+    host: String
+    path: String
+    type: String
+}
+
+"""
+NullString
+"""
+type NullString {
+    String: String!
+    Valid: Boolean
+}
+
+input PageFilter {
+    page: String!
+    pageSize: Int!
+    order: String
+    search: String
+    from: String
+    to: String
+}
+
+"""
+ReSync
+"""
+input ResyncActions {
+    clearDB: String!
+    Resync: String!
+    hardReset: String!
+}
+
+"""
+OAM Capbility
+"""
+type OAMCapability {
+    oamDefinition: Any
+    id: String
+    oamRefSchema: String
+    host: String
+    restricted: Boolean
+    metadata: Any
+}
+
+type KubectlDescribeDetails {
+  describe: String
+  contextID: String
+}
