@@ -94,106 +94,102 @@ export const actionTypes = {
 };
 
 // ACTION CREATOR
-export const updatepagepath = ({ path }) => dispatch => {
+export const updatepagepath = ({ path }) => (dispatch: {} | any ) => {
     // console.log("invoking the updatepagepathandtitle action creator. . .");
     return dispatch({ type: actionTypes.UPDATE_PAGE, path });
 }
 
-export const updatepagetitle = ({ path, title }) => dispatch => {
+export const updatepagetitle = ({ path, title }) => (dispatch: {} | any ) => {
     // console.log("invoking the updatepagepathandtitle action creator. . .");
     return dispatch({ type: actionTypes.UPDATE_TITLE, title });
 }
 
-export const updateProgress = ({ showProgress }) => (dispatch: {} | any) => {
+export const updateProgress: any = ({ showProgress }: { showProgress: boolean }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_PROGRESS, showProgress });
 }
 
-export const updatebetabadge = ({ isBeta }) => dispatch => {
+export const updatebetabadge = ({ isBeta }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_BETA_BADGE, isBeta });
 }
 
-export const updateUser = ({ user }) => dispatch => {
+export const updateUser = ({ user }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_USER, user });
 }
 
-export const updateK8SConfig = ({ k8sConfig }) => dispatch => {
+export const updateK8SConfig = ({ k8sConfig }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_CLUSTER_CONFIG, k8sConfig });
 }
 
-export const setK8sContexts = ({ selectedK8sContexts }) => dispatch => {
+export const setK8sContexts = ({ selectedK8sContexts }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.SET_K8S_CONTEXT, selectedK8sContexts });
 }
 
-export const updateLoadTestData = ({ loadTest }) => dispatch => {
+export const updateLoadTestData = ({ loadTest }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_LOAD_TEST_DATA, loadTest });
 }
 
-export const updateLoadTestPref = ({ loadTestPref }) => dispatch => {
+export const updateLoadTestPref = ({ loadTestPref }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_LOAD_GEN_CONFIG, loadTestPref });
 }
-export const updateAnonymousUsageStats = ({ anonymousUsageStats }) => dispatch => {
+export const updateAnonymousUsageStats = ({ anonymousUsageStats }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_ANONYMOUS_USAGE_STATS, anonymousUsageStats });
 }
-export const updateAnonymousPerformanceResults = ({ anonymousPerfResults }) => dispatch => {
+export const updateAnonymousPerformanceResults = ({ anonymousPerfResults }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_ANONYMOUS_PERFORMANCE_RESULTS, anonymousPerfResults });
 }
 
-export const updateAdaptersInfo = ({ meshAdapters }) => dispatch => {
+export const updateAdaptersInfo = ({ meshAdapters }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_ADAPTERS_INFO, meshAdapters });
 }
-// export const updateMeshResults = ({startKey, results}) => dispatch => {
-//   return dispatch({ type: actionTypes.UPDATE_MESH_RESULTS, startKey, results });
-// }
-export const updateResultsSelection = ({ page, results }) => dispatch => {
+
+export const updateResultsSelection = ({ page, results }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_RESULTS_SELECTION, page, results });
 }
-// export const deleteFromResultsSelection = ({page, index}) => dispatch => {
-//   return dispatch({ type: actionTypes.DELETE_RESULTS_SELECTION, page, index });
-// }
-export const clearResultsSelection = () => dispatch => {
+
+export const clearResultsSelection = () => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.CLEAR_RESULTS_SELECTION });
 }
-export const updateGrafanaConfig = ({ grafana }) => dispatch => {
+export const updateGrafanaConfig = ({ grafana }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_GRAFANA_CONFIG, grafana });
 }
 
-export const updatePrometheusConfig = ({ prometheus }) => dispatch => {
+export const updatePrometheusConfig = ({ prometheus }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_PROMETHEUS_CONFIG, prometheus });
 }
 
-export const updateStaticPrometheusBoardConfig = ({ staticPrometheusBoardConfig }) => dispatch => {
+export const updateStaticPrometheusBoardConfig = ({ staticPrometheusBoardConfig }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_STATIC_BOARD_CONFIG, staticPrometheusBoardConfig });
 }
 
-export const toggleDrawer = ({ isDrawerCollapsed }) => dispatch => {
+export const toggleDrawer = ({ isDrawerCollapsed }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.TOOGLE_DRAWER, isDrawerCollapsed });
 }
 
-export const setAdapter = ({ selectedAdapter }) => dispatch => {
+export const setAdapter = ({ selectedAdapter }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.SET_ADAPTER, selectedAdapter });
 }
 
-export const updateEvents = ({ events }) => dispatch => {
+export const updateEvents = ({ events }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_EVENTS, events });
 }
 
-export const toggleCatalogContent = ({ catalogVisibility }) => dispatch => {
+export const toggleCatalogContent = ({ catalogVisibility }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.SET_CATALOG_CONTENT, catalogVisibility });
 }
 
-export const setOperatorSubscription = ({ operatorState }) => dispatch => {
+export const setOperatorSubscription = ({ operatorState }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.SET_OPERATOR_SUBSCRIPTION, operatorState })
 }
 
-export const setMeshsyncSubscription = ({ meshSyncState }) => dispatch => {
+export const setMeshsyncSubscription = ({ meshSyncState }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.SET_MESHSYNC_SUBSCRIPTION, meshSyncState })
 }
 
-export const updateExtensionType = ({ extensionType }) => dispatch => {
+export const updateExtensionType = ({ extensionType }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_EXTENSION_TYPE, extensionType })
 }
 
-export const updateCapabilities = ({ capabilitiesRegistry }) => dispatch => {
+export const updateCapabilities = ({ capabilitiesRegistry }) => (dispatch: {} | any ) => {
     return dispatch({ type: actionTypes.UPDATE_CAPABILITY_REGISTRY, capabilitiesRegistry })
 }
 

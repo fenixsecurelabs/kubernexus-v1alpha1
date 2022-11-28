@@ -15,32 +15,38 @@ importers:
   apps/nexus-provider-ui:
     specifiers:
       '@babel/core': ^7.0.0
+      '@emotion/react': ^11.10.5
+      '@emotion/styled': ^11.10.5
       '@mui/icons-material': ^5.10.15
+      '@mui/material': ^5.10.15
       '@types/node': ^17.0.12
+      '@types/prop-types': ^15.7.5
       '@types/react': 18.0.25
       '@types/react-dom': ^18.0.9
       eslint: 7.32.0
       eslint-config-custom: workspace:*
       next: 13.0.0
-      preact: ^10.11.3
-      preact-render-to-string: ^5.2.6
+      prop-types: ^15.8.1
       react: ^18.2.0
       react-dom: ^18.2.0
       tsconfig: workspace:*
       typescript: ^4.5.3
       ui: workspace:*
     dependencies:
-      '@mui/icons-material': 5.10.15_fan5qbzahqtxlm5dzefqlqx5ia
+      '@emotion/react': 11.10.5_cuziicjcvwawlf5iuhzacuhqcy
+      '@emotion/styled': 11.10.5_hmjty4frusbltjhl3xd7udcm2y
+      '@mui/icons-material': 5.10.15_oev7u2jo7ua7d3mgxqd6sscfw4
+      '@mui/material': 5.10.15_thp4wrxo45nyllusrnt46mid4u
       '@types/react-dom': 18.0.9
       next: 13.0.0_mqvh5p7ejg4taogoj6tpk3gd5a
-      preact: 10.11.3
-      preact-render-to-string: 5.2.6_preact@10.11.3
+      prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       ui: link:../../packages/ui
     devDependencies:
       '@babel/core': 7.20.2
       '@types/node': 17.0.45
+      '@types/prop-types': 15.7.5
       '@types/react': 18.0.25
       eslint: 7.32.0
       eslint-config-custom: link:../../packages/eslint-config-custom
@@ -710,22 +716,6 @@ packages:
 
   /@mui/core-downloads-tracker/5.10.15:
     resolution: {integrity: sha512-xFcS0LpdF0Q1qJrrNsYUv9PU+ovvhCEPTOMw2jcpEFtl3CA87dLpvztORR5oE2UBFjWF7qLQLOwboQU1+xC7Cw==}
-    dev: false
-
-  /@mui/icons-material/5.10.15_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-fXkz7CtYTt4AH4YYT67VFhM/A3YCUqZGGLp/3BlzRPQRNEfFKknw3MgG1S5UYrY5weti8jxMx3mwwfhVP8OMhQ==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      '@mui/material': ^5.0.0
-      '@types/react': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.1
-      '@types/react': 18.0.25
-      react: 18.2.0
     dev: false
 
   /@mui/icons-material/5.10.15_oev7u2jo7ua7d3mgxqd6sscfw4:
@@ -2697,15 +2687,6 @@ packages:
       source-map-js: 1.0.2
     dev: false
 
-  /preact-render-to-string/5.2.6_preact@10.11.3:
-    resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
-    peerDependencies:
-      preact: '>=10'
-    dependencies:
-      preact: 10.11.3
-      pretty-format: 3.8.0
-    dev: false
-
   /preact/10.11.3:
     resolution: {integrity: sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==}
 
@@ -2718,10 +2699,6 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
-
-  /pretty-format/3.8.0:
-    resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
-    dev: false
 
   /progress/2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}

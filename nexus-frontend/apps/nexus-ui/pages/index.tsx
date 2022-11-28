@@ -1,15 +1,23 @@
 import { NoSsr } from '@mui/material';
 import Head from 'next/head';
 import { Component } from 'react';
-import { connect, Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 import { getPath } from "../../../packages/lib/path"
 import DashboardComponent from '../components/DashboardComponent';
 import { store } from '../lib/store';
 
-class Index extends Component {
+type Props = {
+  updatepagepath: any
+}
+
+type State = {
+  updatepagepath: any
+}
+
+class Index extends Component<Props, State> {
   componentDidMount() {
     console.log(`path: ${getPath()}`);
-    // this.props.updatepagepath({ path : getPath() });
+    this.props.updatepagepath({ path : getPath() });
   }
 
   render() {

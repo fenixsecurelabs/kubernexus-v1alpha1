@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.15",
+    "@mui/material": "^5.10.15",
     "@types/react-dom": "^18.0.9",
     "next": "13.0.0",
-    "preact": "^10.11.3",
-    "preact-render-to-string": "^5.2.6",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ui": "workspace:*"
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@types/node": "^17.0.12",
+    "@types/prop-types": "^15.7.5",
     "@types/react": "18.0.25",
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",

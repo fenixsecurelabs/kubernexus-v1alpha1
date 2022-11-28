@@ -11,11 +11,9 @@ import subscribeClusterResources from './graphql/subscriptions/ClusterResourcesS
 import {submitPrometheusConfigure} from './PrometheusComponent'
 import PropTypes from 'prop-types'
 import {updateGrafanaConfig, updateProgress} from '../lib/store'
-import {bindActionCreators} from 'redux'
+import {AnyAction, bindActionCreators, Dispatch} from 'redux'
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
-// MUI styles
 
 // Props and State Type declaration
 type Props = {
@@ -74,8 +72,9 @@ type State = {
     controlPlaneSubscription: any
     clusterResourcesSubscription: any
 
+    updateProgress: any
+
     _isMounted: boolean
-    updateProgress: boolean
 }
 
 class DashboardComponent extends Component<Props, State> {
@@ -109,7 +108,7 @@ class DashboardComponent extends Component<Props, State> {
         selectedBoardsConfigs: [],
         selectedNamespace: "default",
         ts: "",
-        updateProgress: true,
+        updateProgress: {},
         _isMounted: false
     }
 
@@ -268,8 +267,9 @@ class DashboardComponent extends Component<Props, State> {
      * handleError
      */
     handleError = (msg) => (error) => {
-        this.props.updateProgress({showProgress: false});
         const self = this;
+
+        this.props.updateProgress({ showProgress: false });
         this.props.enqueueSnackbar(`${msg}: ${error}`, {
             variant: "error", preventDuplicate: true,
             action: (key) => (
@@ -527,7 +527,7 @@ class DashboardComponent extends Component<Props, State> {
 // Redux + Type declarations
 DashboardComponent.propTypes = {classes: PropTypes.object.isRequired,};
 
-export const mapStateToProps = (dispatch: string) => ({
+export const mapStateToProps = (dispatch: Dispatch<AnyAction>) => ({
     updateProgress: bindActionCreators(updateProgress, dispatch),
     updateGrafanaConfig: bindActionCreators(updateGrafanaConfig, dispatch),
     // updatePrometheusConfig:bindActionCreators(updatePrometheusConfig, dispatch),
