@@ -1,0 +1,9 @@
+# Rust
+target
+Cargo.lock
+
+# warp
+warp.iml
+
+# Intellij
+.idea/

@@ -1,0 +1,24 @@
+Monorepo:
+* `go-chi` HTTP server
+* Golang `gqlgen` GraphQL 
+* Rust / WASM / wasm-bindgen (future)
+* Typescript React
+* Turbopack / create-react-app
+
+Technologies:
+* Async-GraphQL with Warp
+* SeaORM (Object-Relational Mappers (ORM))
+
+Polyrepo
+* `github.com/phxvlabsio/nexusctl`
+
+Monorepo:
+* `github.com/phxvlabsio/kubernexus`
+    * `nexus-server`
+        * `Rust` / `WASM` / `wasm-bindgen`
+        * `Async-GraphQL with Warp`
+    * `nexus-frontend`
+        * `apps`
+            * `docs` (to be renamed to `nexus-ui`)
+            * `web` (to be renamed to nexus-provider-ui`)
+                * Use `Next.js` default CLI to create app
